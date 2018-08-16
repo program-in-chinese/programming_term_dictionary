@@ -1,0 +1,2 @@
+logging:
+  file: 日志.log  
