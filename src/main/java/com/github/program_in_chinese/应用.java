@@ -8,12 +8,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class 应用 {
 
-  private static final Logger logger = LoggerFactory.getLogger(应用.class);
+  private static final Logger 笔录 = LoggerFactory.getLogger(应用.class);
 
   public static void main(String[] 参数) {
-    logger.info("服务启动开始");
+    笔录.info("服务启动开始");
     SpringApplication.run(应用.class, 参数);
-    logger.info("服务已启动");
+    笔录.info("服务已启动");
   }
 
 }
