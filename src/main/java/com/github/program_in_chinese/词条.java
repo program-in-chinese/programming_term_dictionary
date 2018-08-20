@@ -1,10 +1,18 @@
 package com.github.program_in_chinese;
 
-public class 词条 {
-  // TODO: 仅为演示用
-  private final long id;
-  private final String 中文术语;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+@Entity
+public class 词条 {
+
+  @Id
+  private long id;
+  private String 中文术语;
+
+  public 词条() {
+  }
+  
   public 词条(long id, String 中文术语) {
     this.id = id;
     this.中文术语 = 中文术语;
