@@ -27,4 +27,8 @@ public class 词条 {
   public String get中文术语() {
     return 中文术语;
   }
+
+  public String get英文术语() {
+    return 英文术语;
+  }
 }
