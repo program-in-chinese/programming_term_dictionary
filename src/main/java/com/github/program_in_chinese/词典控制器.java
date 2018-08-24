@@ -18,7 +18,6 @@ public class 词典控制器 {
   @Autowired
   private 词库接口 词库;
 
-
   @GetMapping("/")
   @ResponseBody
   public List<词条> 取词条(@RequestParam(name = "term", required = false, defaultValue = "") String 英文术语) {
