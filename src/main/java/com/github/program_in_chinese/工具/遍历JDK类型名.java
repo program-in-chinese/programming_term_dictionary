@@ -35,7 +35,7 @@ public class 遍历JDK类型名 {
     类型名 名 = 提取器.获取名();
 
     // 从方法列表中删除所有构造方法
-    for (String 类名: 名.类名.keySet()) {
+    for (String 类名 : 名.类名.keySet()) {
       名.方法名.remove(类名);
     }
 
@@ -47,11 +47,15 @@ public class 遍历JDK类型名 {
   }
 
   private static void 处理Java文件(File 路径) throws Exception {
-    File[] 文件 = 路径.listFiles();
-    if (文件 != null) {
-      for (File 某文件 : 文件) {
-        if (某文件.getName().endsWith(".java")) {
-          解析Java文件(某文件);
+    if (路径.isFile()) {
+      if (路径.getName().endsWith(".java")) {
+        解析Java文件(路径);
+      }
+    } else {
+      File[] 文件 = 路径.listFiles();
+      if (文件 != null) {
+        for (File 某文件 : 文件) {
+          处理Java文件(某文件);
         }
       }
     }
