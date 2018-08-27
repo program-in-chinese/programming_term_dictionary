@@ -8,6 +8,7 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Consumer;
 
 public class 文件功用 {
@@ -47,10 +48,22 @@ public class 文件功用 {
     }
   }
 
+  public static void 写行入文件(Map<String, String> 命名表, String 文件名) {
+    List<String> 行 = new ArrayList<>();
+    List<String> 命名 = new ArrayList<>(命名表.keySet());
+
+    for (String 某命名 : 命名) {
+      行.add(命名表.get(某命名)  + "#" + 某命名);
+    }
+    行.sort((o1, o2) -> o1.compareTo(o2));
+    写行入文件(行, 文件名);
+  }
+
   public static void 创建路径(String 文件路径) {
     File 路径 = new File(文件路径);
     if (!路径.exists() && !路径.isDirectory()) {
       路径.mkdir();
     }
   }
+
 }

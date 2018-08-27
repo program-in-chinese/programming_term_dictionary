@@ -1,10 +1,11 @@
 package com.github.program_in_chinese.工具;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
+import java.util.Map;
 
 import com.github.program_in_chinese.功用.文件功用;
 
@@ -16,20 +17,29 @@ public class 处理命名 {
 
   public static void main(String[] args) throws Exception {
 
-    Set<String> 单词表 = new HashSet<>();
+    Map<String, List<String>> 单词表 = new HashMap<>();
 
     for (String 文件名 : 命名列表文件) {
-      List<String> 命名 = 文件功用.取行(new File(常量_输出文件路径 + "/" + 文件名 + 后缀));
-      for (String 某命名 : 命名) {
-        for (String 单词 : 拆分骆驼命名(某命名)) {
-          单词表.add(单词.toLowerCase());
+      List<String> 命名带来源 = 文件功用.取行(new File(常量_输出文件路径 + "/" + 文件名 + 后缀));
+      for (String 某命名带来源 : 命名带来源) {
+        String[] 字段 = 某命名带来源.split("#");
+        for (String 单词 : 拆分骆驼命名(字段[1])) {
+          String 小写单词 = 单词.toLowerCase();
+          if (!单词表.containsKey(小写单词)) {
+            单词表.put(小写单词, new ArrayList<>());
+          }
+          单词表.get(小写单词).add(某命名带来源);
         }
       }
     }
 
-    for (String 某单词 : 单词表) {
-      System.out.println(某单词);
+    List<String> 所有单词 = new ArrayList<>(单词表.keySet());
+    所有单词.sort((o1, o2) -> o1.compareTo(o2));
+    List<String> 行 = new ArrayList<>();
+    for (String 某单词 : 所有单词) {
+      行.add(某单词 + ",\"" + String.join(",", 单词表.get(某单词)) + "\"");
     }
+    文件功用.写行入文件(行, 常量_输出文件路径 + "/" + "词汇.csv");
   }
 
   /**
