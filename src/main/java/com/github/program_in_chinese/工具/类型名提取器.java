@@ -13,7 +13,7 @@ import org.eclipse.jdt.core.dom.VariableDeclaration;
 public class 类型名提取器 extends ASTVisitor {
 
   private 类型名 名 = new 类型名();
-  
+
   private String 当前类名 = "";
 
   @Override
@@ -21,15 +21,15 @@ public class 类型名提取器 extends ASTVisitor {
     String 当前方法名 = 方法节点.getName().getFullyQualifiedName();
     if (为公开声明(方法节点)) {
       名.方法名.put(当前方法名, 当前类名);
-    }
 
-    for (Object 参数 : 方法节点.parameters()) {
-      VariableDeclaration 变量声明 = (VariableDeclaration) 参数;
-      String 参数名 = 变量声明.getName().getFullyQualifiedName();
+      for (Object 参数 : 方法节点.parameters()) {
+        VariableDeclaration 变量声明 = (VariableDeclaration) 参数;
+        String 参数名 = 变量声明.getName().getFullyQualifiedName();
 
-      // 忽略所有单字母参数名. TODO: 是否需要研究单字母命名?
-      if (参数名.length() > 1) {
-        名.参数名.put(参数名, 当前类名 + "." + 当前方法名);
+        // 忽略所有单字母参数名. TODO: 是否需要研究单字母命名?
+        if (参数名.length() > 1) {
+          名.参数名.put(参数名, 当前类名 + "." + 当前方法名);
+        }
       }
     }
     return super.visit(方法节点);

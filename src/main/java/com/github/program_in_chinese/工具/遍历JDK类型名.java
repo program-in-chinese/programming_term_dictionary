@@ -13,7 +13,7 @@ public class 遍历JDK类型名 {
   private static final ASTParser 语法解析器 = ASTParser.newParser(AST.JLS8);
 
   // JDK源码内路径
-  private static final String 常量_源文件路径 = "java/util";
+  private static final String 常量_源文件路径 = "java";
   private static final String 常量_输出文件路径 = "命名列表/";
 
   private static final 类型名提取器 提取器 = new 类型名提取器();

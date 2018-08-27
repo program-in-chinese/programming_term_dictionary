@@ -12,7 +12,8 @@ import com.github.program_in_chinese.功用.文件功用;
 public class 处理命名 {
 
   private static final String 常量_输出文件路径 = "命名列表";
-  private static final String 后缀 = "_java_util.txt";
+  private static final String 常量_输出后缀 = "";
+  private static final String 后缀 = "_java" + 常量_输出后缀 + ".txt";
   private static final List<String> 命名列表文件 = Arrays.asList("参数", "方法", "类");
 
   public static void main(String[] args) throws Exception {
@@ -39,7 +40,7 @@ public class 处理命名 {
     for (String 某单词 : 所有单词) {
       行.add(某单词 + ",\"" + String.join(",", 单词表.get(某单词)) + "\"");
     }
-    文件功用.写行入文件(行, 常量_输出文件路径 + "/" + "词汇_java_util.csv");
+    文件功用.写行入文件(行, 常量_输出文件路径 + "/" + "词汇" + 常量_输出后缀 + ".csv");
   }
 
   /**
