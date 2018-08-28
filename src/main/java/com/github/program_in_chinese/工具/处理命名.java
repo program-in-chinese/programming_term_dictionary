@@ -38,7 +38,8 @@ public class 处理命名 {
     所有单词.sort((o1, o2) -> o1.compareTo(o2));
     List<String> 行 = new ArrayList<>();
     for (String 某单词 : 所有单词) {
-      行.add(某单词 + ",\"" + String.join(",", 单词表.get(某单词)) + "\"");
+      List<String> 来源 = 单词表.get(某单词);
+      行.add(某单词 + ",\"" + String.join(",", 来源) + "\"," + 来源.size());
     }
     文件功用.写行入文件(行, 常量_输出文件路径 + "/" + "词汇" + 常量_输出后缀 + ".csv");
   }
